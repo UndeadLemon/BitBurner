@@ -6,13 +6,18 @@ This repo provides a bare-bones starting point for developing [Bitburner](https:
 Getting Started
 ---------------
 
+This project references the official Bitburner type definitions using a Git submodule.
+To ensure you have the required definitions, clone the repository with:
 
-This project references the official Bitburner typescript definitions using a Git submodule.
-You may need to run the following after cloning:
+```
+git clone --recurse-submodules --shallow-submodules
+```
+
+If you cloned without submodules, you may need to run the following after cloning:
 
 ```
 git submodule init
-git submodule update --recursive
+git submodule update --recursive --depth 1
 ```
 
 Ensure you have all of the required dev dependencies with:
@@ -21,34 +26,33 @@ Ensure you have all of the required dev dependencies with:
 npm ci
 ```
 
-You can build using VSCode (Ctrl-Shift-B by default) or manually on the command line with:
+You can build using VSCode <kbd>Ctrl + Shift + B</kbd> or manually on the command line with:
 
 ```
 npx tsc && node build.mjs
 ```
 
-This project comes with a single script, `pull.js` which can be used to automatically update scripts from Bitburner.  Manually copy the `pull.js` file using:
-
+This project comes with a single script, `pull.js` which can be used to automatically update your scripts from within Bitburner. You should manually copy the `pull.js` file using:
 
 ```
 [somewhere /else/] home
 [home /]> nano pull.js
 ```
 
-The files will, by default, be pulled from `http://localhost:8080`. To start the local development server, run:
+When you run `pull.js`, your scripts will (by default) be pulled from `http://localhost:8080`. To start the local development server, run:
 
 ```
 npm start
 ```
 
-With the http server running, you can run, e.g.
+With the http server running, you can run `pull.js` to update your scripts. On the `home` server, run:
 
 ```
 [home /]> alias pull="run pull.js"
 [home /]> pull
 ```
 
-This will automatically download all new and updated scripts to your `home` computer.
+This will automatically download all new and updated scripts.  You may need to restart any running scripts for your changes to take full effect.
 
 Folder Structure
 ----------------
@@ -56,7 +60,7 @@ Folder Structure
 - `src/` Base folder for scripts.  You can create scripts or subfolders here.
     - `src/shared/` Scripts in this folder are not distributed directly, but are bundled as needed.
 - `lib/` Contains the Git submodule for the NetscriptDefinitions.
-- `dist/` Compilation output folder, and the root for the HTTP development server.
+- `dist/` Compilation output folder and the root for the HTTP development server.
 
 File Template
 -------------
