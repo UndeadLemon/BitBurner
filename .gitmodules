@@ -1,0 +1,4 @@
+[submodule "lib/bitburner-src"]
+	path = lib/bitburner-src
+	url = https://github.com/bitburner-official/bitburner-src.git
+	branch = dev

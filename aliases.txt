@@ -1,0 +1,1 @@
+alias pull="run pull.js"

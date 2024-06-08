@@ -1,0 +1,17 @@
+{
+    "include": [
+        "./src/**/*.ts",
+    ],
+    "compilerOptions": {
+        "target": "ES2021",
+        "module": "ES2020",
+        "lib": ["ES2021"],
+        "paths": {
+            "@shared/*": ["./src/shared/*"],
+            "@NS/*": ["./lib/bitburner-src/src/ScriptEditor/*"],
+        },
+        "rootDir": "./src/",
+        "outDir": "./out/",
+        "noEmit": true,
+    },
+}
