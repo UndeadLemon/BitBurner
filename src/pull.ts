@@ -49,14 +49,14 @@ export async function main(ns: NS) {
 
   let changes = false;
   for (let attempt = 1; attempt <= attempts; attempt++) {
-    changes = await update();
-    if (changes) break;
-    if (attempt < attempts - 1) {
-      if (attempt == 1) {
-        ns.tprint("Watching for changes...");
-      }
-      await ns.sleep(delayTime);
+    if (await update()) {
+      changes = true;
+      attempt = attempts - 1; // Give it one more try if we had updates.
+    } else if (attempt == 1) {
+      ns.tprint("Watching for changes...");
     }
+
+    await ns.sleep(delayTime);
   }
 
   if (!changes) {
